@@ -71,6 +71,9 @@ class _CreateCustosFixosState extends State<CreateCustosFixos> {
                                   ),
                                 );
                                 custosFixosController.totalCustosFixos();
+                                FocusScope.of(context).unfocus();
+                                tituloEC.text = '';
+                                valorEC.text = '';
                               },
                               child: const Text('Salvar'),
                             );
@@ -83,16 +86,16 @@ class _CreateCustosFixosState extends State<CreateCustosFixos> {
               ],
             ),
           ),
-          // GetBuilder<CustosFixController>(
-          //   builder: (custosFixosController) {
-          //     return Text(
-          //       'Total dos Custos Fixos: R\$ ${custosFixosController.totalCustosFixos()}',
-          //       style:
-          //           const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-          //     );
-          //   },
-          // ),
-          // const SizedBox(height: 20),
+          GetBuilder<CustosFixController>(
+            builder: (custosFixosController) {
+              return Text(
+                'Total dos Custos Fixos: R\$ ${custosFixosController.totalCustosFix}',
+                style:
+                    const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              );
+            },
+          ),
+          const SizedBox(height: 20),
           Expanded(
             child: GetBuilder<CustosFixController>(
               builder: (custosFixosController) {
@@ -116,15 +119,6 @@ class _CreateCustosFixosState extends State<CreateCustosFixos> {
                 );
               },
             ),
-          ),
-          GetBuilder<CustosFixController>(
-            builder: (custosFixosController) {
-              return Text(
-                'Total dos Custos Fixos: R\$ ${custosFixosController.totalCustosFix}',
-                style:
-                    const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              );
-            },
           ),
         ],
       ),

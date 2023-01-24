@@ -44,7 +44,7 @@ class Home extends StatelessWidget {
               title: 'Receita',
               preQuantidade: 'Quantidade',
               quantidade: 10,
-              onPress: () {},
+              onPress: () => Get.toNamed(PagesRoutes.receitas),
             ),
             CardHome(
               icon: 'assets/images/icon-despesas.png',

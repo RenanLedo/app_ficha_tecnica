@@ -32,4 +32,6 @@ class InsumoController extends GetxController {
     }
     update();
   }
+
+  
 }

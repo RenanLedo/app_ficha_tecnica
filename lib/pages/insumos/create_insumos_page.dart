@@ -93,7 +93,7 @@ class _CreateInsumosPageState extends State<CreateInsumosPage> {
                               unidadeMedida: insumoController.itemValue,
                             ),
                           );
-
+                          FocusScope.of(context).unfocus();
                           tituloEC.text = '';
                           custoEC.text = '';
                         },
