@@ -1,9 +1,12 @@
 import 'package:app_ficha_tecnica/components/card_home.dart';
 import 'package:app_ficha_tecnica/modulos/custosFixos/controller/custos_fix_controller.dart';
+import 'package:app_ficha_tecnica/modulos/despesas/controller/despesa_controller.dart';
 import 'package:app_ficha_tecnica/modulos/insumos/controller/insumo_controller.dart';
 import 'package:app_ficha_tecnica/pages_routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import 'receita/controller/receita_controller.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -39,19 +42,28 @@ class Home extends StatelessWidget {
                 );
               },
             ),
-            CardHome(
-              icon: 'assets/images/icon-receita.png',
-              title: 'Receita',
-              preQuantidade: 'Quantidade',
-              quantidade: 10,
-              onPress: () => Get.toNamed(PagesRoutes.receitas),
+            GetBuilder<ReceitaController>(
+              builder: (receitaController) {
+                return CardHome(
+                  icon: 'assets/images/icon-receita.png',
+                  title: 'Receita',
+                  preQuantidade: 'Quantidade',
+                  quantidade: 10,
+                  onPress: () => Get.toNamed(PagesRoutes.receitas),
+                );
+              },
             ),
-            CardHome(
-              icon: 'assets/images/icon-despesas.png',
-              title: 'Despesas',
-              preQuantidade: 'Quantidade',
-              quantidade: 6,
-              onPress: () {},
+            GetBuilder<DespesaController>(
+              builder: (despesaController) {
+                return CardHome(
+                  icon: 'assets/images/icon-despesas.png',
+                  title: 'Despesas',
+                  preQuantidade: 'Quantidade',
+                  quantidade: double.parse(
+                      despesaController.despesaList.length.toString()),
+                  onPress: () => Get.toNamed(PagesRoutes.createDespesa),
+                );
+              },
             ),
             GetBuilder<CustosFixController>(
               builder: (custsFixController) {

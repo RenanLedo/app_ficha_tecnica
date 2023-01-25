@@ -1,4 +1,5 @@
 import 'package:app_ficha_tecnica/modulos/custosFixos/controller/custos_fix_controller.dart';
+import 'package:app_ficha_tecnica/modulos/despesas/controller/despesa_controller.dart';
 import 'package:app_ficha_tecnica/modulos/home.dart';
 import 'package:app_ficha_tecnica/modulos/insumos/controller/insumo_controller.dart';
 import 'package:app_ficha_tecnica/modulos/receita/controller/receita_controller.dart';
@@ -12,6 +13,7 @@ void main() {
   Get.put<CustosFixController>(CustosFixController());
   Get.put<InsumoController>(InsumoController());
   Get.put<ReceitaController>(ReceitaController());
+  Get.put<DespesaController>(DespesaController());
   runApp(const MyApp());
 }
 

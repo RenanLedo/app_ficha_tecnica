@@ -1,4 +1,5 @@
 import 'package:app_ficha_tecnica/modulos/custosFixos/page/create_custos_fixos.dart';
+import 'package:app_ficha_tecnica/modulos/despesas/page/despesa_page.dart';
 import 'package:app_ficha_tecnica/modulos/insumos/page/create_insumos_page.dart';
 import 'package:app_ficha_tecnica/modulos/receita/page/add_receita.dart';
 import 'package:app_ficha_tecnica/modulos/receita/page/receitas_page.dart';
@@ -25,6 +26,10 @@ abstract class AppPages {
       page: () => const AddReceita(),
     ),
     GetPage(
+      name: PagesRoutes.createDespesa,
+      page: () => const DespesaPage(),
+    ),
+    GetPage(
       name: PagesRoutes.home,
       page: () => const Home(),
     ),
@@ -36,5 +41,6 @@ abstract class PagesRoutes {
   static const String custosFixos = '/custosFixos';
   static const String receitas = '/receitas';
   static const String addReceitas = '/addReceitas';
+  static const String createDespesa = '/createDespesa';
   static const String home = '/';
 }
