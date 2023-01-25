@@ -1,6 +1,7 @@
 import 'package:app_ficha_tecnica/components/custom_text_field.dart';
 import 'package:app_ficha_tecnica/modulos/insumos/controller/insumo_controller.dart';
 import 'package:app_ficha_tecnica/modulos/insumos/model/insumo.dart';
+import 'package:app_ficha_tecnica/modulos/receita/components/insumosReceitaTile.dart';
 import 'package:app_ficha_tecnica/modulos/receita/controller/receita_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -50,7 +51,6 @@ class _AddReceitaState extends State<AddReceita> {
                     : receitaController.itemInsumoValue,
                 onChanged: (escolha) {
                   receitaController.setItemInsumoValue(insumo: escolha);
-                  
                 },
                 items: insumoController.insumosList
                     .map(
@@ -62,30 +62,30 @@ class _AddReceitaState extends State<AddReceita> {
                     .toList(),
               ),
             ),
-            CustomTextField(
-              icon: Icons.numbers,
-              label: 'Quantidade',
-              controller: quantidadeEC,
-              textInputType: TextInputType.number,
-            ),
             GetBuilder<ReceitaController>(
               builder: (receitaController) {
                 return Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
+                    Expanded(
+                      child: CustomTextField(
+                        icon: Icons.numbers,
+                        label: 'Quantidade',
+                        controller: quantidadeEC,
+                        textInputType: TextInputType.number,
+                      ),
+                    ),
                     Text(receitaController.itemInsumoValue?.unidadeMedida ==
                             'UNIDADE'
                         ? 'UNIDADE(S)'
                         : 'GRAMA(S)'),
                     ElevatedButton(
                         onPressed: () {
-                          final itemValue = receitaController.itemInsumoValue;
-                          final quantidade = double.parse(quantidadeEC.text);
+                          var itemValue = receitaController.itemInsumoValue;
+                          var quantidade = double.parse(quantidadeEC.text);
 
                           receitaController.addIsumoForList(
                               insumo: itemValue, quantidade: quantidade);
-
-                          
                         },
                         child: const Text('Adicionar Insumo'))
                   ],
@@ -94,14 +94,22 @@ class _AddReceitaState extends State<AddReceita> {
             ),
             GetBuilder<ReceitaController>(
               builder: (receitaController) {
-                return ListView.builder(
-                    // scrollDirection: Axis.horizontal,
-                    shrinkWrap: true,
-                    itemCount: receitaController.insumosReceitaList.length,
-                    itemBuilder: (context, index) {
-                      return Text(
-                          '${receitaController.insumosReceitaList[index].title} - ${receitaController.insumosReceitaList[index].custoInReceita}');
-                    });
+                return SizedBox(
+                  height: 30,
+                  child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      shrinkWrap: true,
+                      itemCount: receitaController.insumosReceitaList.length,
+                      itemBuilder: (context, index) {
+                        final insumoReceitaList = receitaController
+                            .insumosReceitaList.reversed
+                            .toList()[index];
+                        return InsumosReceitaTile(
+                          insumo: insumoReceitaList,
+                          onPress: () {},
+                        );
+                      }),
+                );
               },
             )
           ],
