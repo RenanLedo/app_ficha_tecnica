@@ -31,12 +31,13 @@ class InsumosReceitaTile extends StatelessWidget {
             style: const TextStyle(fontSize: 13),
           ),
           CustomIcon(
-              onPress: onPress,
-              radios: 50,
-              backgrounColor: Colors.transparent,
-              color: Colors.white,
-              icon: Icons.close_rounded,
-              padding: 0,)
+            onPress: onPress,
+            radios: 50,
+            backgrounColor: Colors.transparent,
+            color: Colors.white,
+            icon: Icons.close_rounded,
+            padding: 0,
+          )
         ],
       ),
     );

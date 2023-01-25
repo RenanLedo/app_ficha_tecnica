@@ -43,12 +43,13 @@ class _AddReceitaState extends State<AddReceita> {
                   icon: Icons.title, label: 'Titulo da Receita'),
               GetBuilder<ReceitaController>(
                 builder: (receitaController) {
-                  return Container(
-                    color: const Color.fromARGB(255, 80, 80, 80),
+                  return Card(
                     child: Padding(
                       padding: const EdgeInsets.all(10),
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          const Text('Adicione os insumos da receita'),
                           SizedBox(
                             width: MediaQuery.of(context).size.width,
                             child: DropdownButtonFormField<Insumo>(
@@ -74,6 +75,9 @@ class _AddReceitaState extends State<AddReceita> {
                                   .toList(),
                             ),
                           ),
+                          const SizedBox(
+                            height: 10,
+                          ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -84,11 +88,17 @@ class _AddReceitaState extends State<AddReceita> {
                                   textInputType: TextInputType.number,
                                 ),
                               ),
+                              const SizedBox(
+                                width: 10,
+                              ),
                               Text(receitaController
                                           .itemInsumoValue?.unidadeMedida ==
                                       'UNIDADE'
                                   ? 'UNIDADE(S)'
                                   : 'GRAMA(S)'),
+                              const SizedBox(
+                                width: 10,
+                              ),
                               CustomIcon(
                                 onPress: () {
                                   var itemValue =
@@ -99,6 +109,9 @@ class _AddReceitaState extends State<AddReceita> {
                                   receitaController.addIsumoForList(
                                       insumo: itemValue,
                                       quantidade: quantidade);
+                                  FocusScope.of(context).unfocus();
+                                  quantidadeEC.text = '';
+                                  receitaController.itemInsumoValue = null;
                                 },
                                 radios: 50,
                                 backgrounColor:
@@ -109,23 +122,28 @@ class _AddReceitaState extends State<AddReceita> {
                               )
                             ],
                           ),
-                          SizedBox(
-                            height: 30,
-                            child: ListView.builder(
-                                scrollDirection: Axis.horizontal,
-                                shrinkWrap: true,
-                                itemCount:
-                                    receitaController.insumosReceitaList.length,
-                                itemBuilder: (context, index) {
-                                  final insumoReceitaList = receitaController
-                                      .insumosReceitaList.reversed
-                                      .toList()[index];
-                                  return InsumosReceitaTile(
-                                    insumo: insumoReceitaList,
-                                    onPress: () {},
-                                  );
-                                }),
-                          ),
+                          receitaController.insumosReceitaList.isEmpty
+                              ? const SizedBox()
+                              : SizedBox(
+                                  height: 30,
+                                  child: ListView.builder(
+                                      reverse: true,
+                                      scrollDirection: Axis.horizontal,
+                                      shrinkWrap: true,
+                                      itemCount: receitaController
+                                          .insumosReceitaList.length,
+                                      itemBuilder: (context, index) {
+                                        final insumoList = receitaController
+                                            .insumosReceitaList[index];
+                                        return InsumosReceitaTile(
+                                          insumo: insumoList,
+                                          onPress: () {
+                                            return receitaController
+                                                .removeInsumoList(insumoList);
+                                          },
+                                        );
+                                      }),
+                                ),
                         ],
                       ),
                     ),

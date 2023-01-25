@@ -11,13 +11,20 @@ class ReceitaController extends GetxController {
   Future<void> addIsumoForList({Insumo? insumo, double? quantidade = 1}) async {
     if (insumo != null) {
       insumosReceitaList.add(Insumo(
+          id: insumo.id,
           title: insumo.title,
           price: insumo.price,
           unidadeMedida: insumo.unidadeMedida,
           custoInReceita: insumo.custoUnd! * quantidade!));
     }
-    
 
+    update();
+  }
+
+  void removeInsumoList(Insumo insumo) {
+    if (insumo.id != null) {
+      insumosReceitaList.removeWhere((element) => element.id == insumo.id);
+    }
     update();
   }
 
