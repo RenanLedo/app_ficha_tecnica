@@ -1,7 +1,7 @@
 import 'package:app_ficha_tecnica/components/custom_text_field.dart';
-import 'package:app_ficha_tecnica/models/insumo.dart';
-import 'package:app_ficha_tecnica/pages/insumos/controller/insumo_controller.dart';
-import 'package:app_ficha_tecnica/pages/receita/controller/receita_controller.dart';
+import 'package:app_ficha_tecnica/modulos/insumos/controller/insumo_controller.dart';
+import 'package:app_ficha_tecnica/modulos/insumos/model/insumo.dart';
+import 'package:app_ficha_tecnica/modulos/receita/controller/receita_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -49,11 +49,8 @@ class _AddReceitaState extends State<AddReceita> {
                     ? null
                     : receitaController.itemInsumoValue,
                 onChanged: (escolha) {
-                  // if (escolha != null) {
-                  //   receitaController.addIsumoForList(escolha);
-                  // }
-                  receitaController.setItemInsumoValue(escolha);
-                  print(receitaController.itemInsumoValue?.unidadeMedida);
+                  receitaController.setItemInsumoValue(insumo: escolha);
+                  
                 },
                 items: insumoController.insumosList
                     .map(
@@ -69,6 +66,7 @@ class _AddReceitaState extends State<AddReceita> {
               icon: Icons.numbers,
               label: 'Quantidade',
               controller: quantidadeEC,
+              textInputType: TextInputType.number,
             ),
             GetBuilder<ReceitaController>(
               builder: (receitaController) {
@@ -81,15 +79,13 @@ class _AddReceitaState extends State<AddReceita> {
                         : 'GRAMA(S)'),
                     ElevatedButton(
                         onPressed: () {
+                          final itemValue = receitaController.itemInsumoValue;
                           final quantidade = double.parse(quantidadeEC.text);
-                           receitaController.itemInsumoValue?.custoUnd =
-                              receitaController
-                                      .itemInsumoValue!.custoInReceita! *
-                                  quantidade;
-                          print(receitaController
-                              .itemInsumoValue?.custoInReceita);
+
                           receitaController.addIsumoForList(
-                              receitaController.itemInsumoValue);
+                              insumo: itemValue, quantidade: quantidade);
+
+                          
                         },
                         child: const Text('Adicionar Insumo'))
                   ],

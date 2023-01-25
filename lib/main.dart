@@ -1,7 +1,7 @@
-import 'package:app_ficha_tecnica/pages/custosFixos/controller/custos_fix_controller.dart';
-import 'package:app_ficha_tecnica/pages/home.dart';
-import 'package:app_ficha_tecnica/pages/insumos/controller/insumo_controller.dart';
-import 'package:app_ficha_tecnica/pages/receita/controller/receita_controller.dart';
+import 'package:app_ficha_tecnica/modulos/custosFixos/controller/custos_fix_controller.dart';
+import 'package:app_ficha_tecnica/modulos/home.dart';
+import 'package:app_ficha_tecnica/modulos/insumos/controller/insumo_controller.dart';
+import 'package:app_ficha_tecnica/modulos/receita/controller/receita_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

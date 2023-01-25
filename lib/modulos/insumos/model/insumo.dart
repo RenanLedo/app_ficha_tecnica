@@ -10,8 +10,8 @@ class Insumo {
     this.id,
     required this.title,
     required this.price,
-     this.custoUnd,
-     this.custoInReceita,
+    this.custoUnd,
+    this.custoInReceita,
     required this.unidadeMedida,
   });
 }

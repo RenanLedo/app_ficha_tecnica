@@ -1,4 +1,4 @@
-import 'package:app_ficha_tecnica/models/insumo.dart';
+import 'package:app_ficha_tecnica/modulos/insumos/model/insumo.dart';
 import 'package:flutter/material.dart';
 
 class InsumoTile extends StatelessWidget {

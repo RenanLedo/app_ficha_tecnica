@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:app_ficha_tecnica/models/custos_Fixos.dart';
+import 'package:app_ficha_tecnica/modulos/custosFixos/model/custos_Fixos.dart';
 
 class CustoFixoTile extends StatelessWidget {
   CustosFixos custoFixo;

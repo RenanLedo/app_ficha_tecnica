@@ -27,7 +27,7 @@ class CardHome extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Image.asset(icon, width: 100, height: 100),
+              Image.asset(icon, width: 80, height: 80),
               Text(
                 title,
                 style: const TextStyle(

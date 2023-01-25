@@ -1,10 +1,10 @@
-import 'package:app_ficha_tecnica/pages/custosFixos/page/create_custos_fixos.dart';
-import 'package:app_ficha_tecnica/pages/insumos/create_insumos_page.dart';
-import 'package:app_ficha_tecnica/pages/receita/page/add_receita.dart';
-import 'package:app_ficha_tecnica/pages/receita/page/receitas_page.dart';
+import 'package:app_ficha_tecnica/modulos/custosFixos/page/create_custos_fixos.dart';
+import 'package:app_ficha_tecnica/modulos/insumos/page/create_insumos_page.dart';
+import 'package:app_ficha_tecnica/modulos/receita/page/add_receita.dart';
+import 'package:app_ficha_tecnica/modulos/receita/page/receitas_page.dart';
 import 'package:get/get.dart';
 
-import '../pages/home.dart';
+import '../modulos/home.dart';
 
 abstract class AppPages {
   static final pages = <GetPage>[

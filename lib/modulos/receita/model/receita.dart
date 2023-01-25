@@ -1,5 +1,5 @@
 
-import 'package:app_ficha_tecnica/models/insumo.dart';
+import 'package:app_ficha_tecnica/modulos/insumos/model/insumo.dart';
 
 class Receita {
   String? id;

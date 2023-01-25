@@ -1,7 +1,7 @@
 import 'package:app_ficha_tecnica/components/custom_text_field.dart';
-import 'package:app_ficha_tecnica/models/custos_Fixos.dart';
-import 'package:app_ficha_tecnica/pages/custosFixos/components/custo_fixo_tile.dart';
-import 'package:app_ficha_tecnica/pages/custosFixos/controller/custos_fix_controller.dart';
+import 'package:app_ficha_tecnica/modulos/custosFixos/model/custos_Fixos.dart';
+import 'package:app_ficha_tecnica/modulos/custosFixos/components/custo_fixo_tile.dart';
+import 'package:app_ficha_tecnica/modulos/custosFixos/controller/custos_fix_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

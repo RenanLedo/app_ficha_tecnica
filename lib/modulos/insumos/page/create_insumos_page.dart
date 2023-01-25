@@ -1,7 +1,7 @@
 import 'package:app_ficha_tecnica/components/custom_text_field.dart';
-import 'package:app_ficha_tecnica/models/insumo.dart';
-import 'package:app_ficha_tecnica/pages/components/insumo_tile.dart';
-import 'package:app_ficha_tecnica/pages/insumos/controller/insumo_controller.dart';
+import 'package:app_ficha_tecnica/modulos/insumos/model/insumo.dart';
+import 'package:app_ficha_tecnica/modulos/components/insumo_tile.dart';
+import 'package:app_ficha_tecnica/modulos/insumos/controller/insumo_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

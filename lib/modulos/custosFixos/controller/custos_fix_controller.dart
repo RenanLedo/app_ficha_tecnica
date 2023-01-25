@@ -1,4 +1,4 @@
-import 'package:app_ficha_tecnica/models/custos_Fixos.dart';
+import 'package:app_ficha_tecnica/modulos/custosFixos/model/custos_Fixos.dart';
 import 'package:get/get.dart';
 
 class CustosFixController extends GetxController {
