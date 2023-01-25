@@ -1,3 +1,4 @@
+import 'package:app_ficha_tecnica/components/custom_icon.dart';
 import 'package:app_ficha_tecnica/modulos/insumos/model/insumo.dart';
 import 'package:flutter/material.dart';
 
@@ -29,19 +30,13 @@ class InsumosReceitaTile extends StatelessWidget {
             insumo.custoInReceita.toString(),
             style: const TextStyle(fontSize: 13),
           ),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(50),
-            child: Material(
-              color: Colors.transparent,
-              child: InkWell(
-                onTap: onPress,
-                child: const Icon(
-                  Icons.close_rounded,
-                  color: Color.fromARGB(255, 58, 58, 58),
-                ),
-              ),
-            ),
-          ),
+          CustomIcon(
+              onPress: onPress,
+              radios: 50,
+              backgrounColor: Colors.transparent,
+              color: Colors.white,
+              icon: Icons.close_rounded,
+              padding: 0,)
         ],
       ),
     );
