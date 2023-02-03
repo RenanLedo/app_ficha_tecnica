@@ -12,8 +12,8 @@ void main() {
   // WidgetsFlutterBinding.ensureInitialized();
   Get.put<CustosFixController>(CustosFixController());
   Get.put<InsumoController>(InsumoController());
-  Get.put<ReceitaController>(ReceitaController());
   Get.put<DespesaController>(DespesaController());
+  Get.put<ReceitaController>(ReceitaController());
   runApp(const MyApp());
 }
 
@@ -27,12 +27,14 @@ class MyApp extends StatelessWidget {
       title: 'App Ficha Tecnica',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color.fromARGB(255, 0, 80, 36),
+        ),
         appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.transparent,
-          elevation: 0,
           centerTitle: true,
         ),
-        primarySwatch: Colors.blue,
+        fontFamily: 'Rubik',
       ),
       home: const Home(),
       getPages: AppPages.pages,

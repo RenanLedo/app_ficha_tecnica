@@ -7,6 +7,7 @@ import 'package:app_ficha_tecnica/modulos/insumos/controller/insumo_controller.d
 import 'package:app_ficha_tecnica/modulos/insumos/model/insumo.dart';
 import 'package:app_ficha_tecnica/modulos/receita/components/insumosReceitaTile.dart';
 import 'package:app_ficha_tecnica/modulos/receita/controller/receita_controller.dart';
+import 'package:app_ficha_tecnica/services/utils_services.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -18,33 +19,53 @@ class AddReceita extends StatefulWidget {
 }
 
 class _AddReceitaState extends State<AddReceita> {
+  final utilsSelvice = UtilsServices();
   final insumoController = Get.find<InsumoController>();
   final despesaController = Get.find<DespesaController>();
   final receitaController = Get.find<ReceitaController>();
-  final quantidadeEC = TextEditingController();
+  final quantidadeIsumooEC = TextEditingController();
+  final quantidadeDespesaEC = TextEditingController();
+  final titleEC = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          automaticallyImplyLeading: false,
-          leading: TextButton(
-            onPressed: () => Get.back(),
+        automaticallyImplyLeading: false,
+        leading: TextButton(
+          onPressed: () => Get.back(),
+          child: const Text(
+            'Voltar',
+            style: TextStyle(color: Colors.black),
+          ),
+        ),
+        title: const Text(
+          'Adicione uma Receitas',
+          style: TextStyle(color: Colors.black),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              quantidadeDespesaEC.text = '';
+              quantidadeIsumooEC.text = '';
+              titleEC.text = '';
+              receitaController.limparTudo();
+            },
             child: const Text(
-              'Voltar',
+              'Limpar',
               style: TextStyle(color: Colors.black),
             ),
           ),
-          title: const Text(
-            'Adicione uma Receitas',
-            style: TextStyle(color: Colors.black),
-          )),
+        ],
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(14),
           child: Column(
             children: [
-              const CustomTextField(
-                  icon: Icons.title, label: 'Titulo da Receita'),
+              CustomTextField(
+                  controller: titleEC,
+                  icon: Icons.title,
+                  label: 'Titulo da Receita'),
               GetBuilder<ReceitaController>(
                 builder: (receitaController) {
                   return Card(
@@ -88,7 +109,7 @@ class _AddReceitaState extends State<AddReceita> {
                               Expanded(
                                 child: CustomTextField(
                                   label: 'Quantidade',
-                                  controller: quantidadeEC,
+                                  controller: quantidadeIsumooEC,
                                   textInputType: TextInputType.number,
                                 ),
                               ),
@@ -108,13 +129,13 @@ class _AddReceitaState extends State<AddReceita> {
                                   var itemValue =
                                       receitaController.itemInsumoValue;
                                   var quantidade =
-                                      double.parse(quantidadeEC.text);
+                                      double.parse(quantidadeIsumooEC.text);
 
                                   receitaController.addIsumoForList(
                                       insumo: itemValue,
                                       quantidade: quantidade);
                                   FocusScope.of(context).unfocus();
-                                  quantidadeEC.text = '';
+                                  quantidadeIsumooEC.text = '';
                                   receitaController.itemInsumoValue = null;
                                 },
                                 radios: 50,
@@ -140,6 +161,7 @@ class _AddReceitaState extends State<AddReceita> {
                                         final insumoList = receitaController
                                             .insumosReceitaList[index];
                                         return InsumosReceitaTile(
+                                          
                                           insumo: insumoList,
                                           onPress: () {
                                             return receitaController
@@ -198,7 +220,7 @@ class _AddReceitaState extends State<AddReceita> {
                               Expanded(
                                 child: CustomTextField(
                                   label: 'Quantidade',
-                                  controller: quantidadeEC,
+                                  controller: quantidadeDespesaEC,
                                   textInputType: TextInputType.number,
                                 ),
                               ),
@@ -218,13 +240,13 @@ class _AddReceitaState extends State<AddReceita> {
                                   var itemValue =
                                       receitaController.itemDespesaValue;
                                   var quantidade =
-                                      double.parse(quantidadeEC.text);
+                                      double.parse(quantidadeDespesaEC.text);
 
                                   receitaController.addDespesaForList(
                                       despesa: itemValue,
                                       quantidade: quantidade);
                                   FocusScope.of(context).unfocus();
-                                  quantidadeEC.text = '';
+                                  quantidadeDespesaEC.text = '';
                                   receitaController.itemInsumoValue = null;
                                 },
                                 radios: 50,
@@ -264,6 +286,21 @@ class _AddReceitaState extends State<AddReceita> {
                   );
                 },
               ),
+              GetBuilder<ReceitaController>(
+                builder: (receitaController) {
+                  return Row(
+                    children: [
+                      ElevatedButton(
+                          onPressed: () {
+                            receitaController.creatReceita(titleEC.text);
+                          },
+                          child: const Text('salvar receita')),
+                      Text(utilsSelvice.priceToCurrency(
+                          receitaController.custoReceitAtual ?? 0))
+                    ],
+                  );
+                },
+              )
             ],
           ),
         ),

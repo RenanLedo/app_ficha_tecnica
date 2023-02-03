@@ -31,9 +31,9 @@ class CardHome extends StatelessWidget {
               Text(
                 title,
                 style: const TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    color: Color.fromARGB(221, 49, 49, 49)),
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               Expanded(
                 child: Row(

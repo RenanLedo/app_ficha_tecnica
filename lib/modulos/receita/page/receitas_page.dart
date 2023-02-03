@@ -1,3 +1,4 @@
+import 'package:app_ficha_tecnica/modulos/receita/controller/receita_controller.dart';
 import 'package:app_ficha_tecnica/pages_routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -29,7 +30,21 @@ class ReceitasPage extends StatelessWidget {
             'Receitas',
             style: TextStyle(color: Colors.black),
           )),
-      body: Container(),
+      body: GetBuilder<ReceitaController>(
+        builder: (receitaController) {
+          return ListView.builder(
+              itemCount: receitaController.receitaList.length,
+              itemBuilder: (context, index) {
+                return Row(
+                  children: [
+                    Text(receitaController.receitaList[index].title),
+                    Text(receitaController.receitaList[index].custoReceita
+                        .toString())
+                  ],
+                );
+              });
+        },
+      ),
     );
   }
 }
