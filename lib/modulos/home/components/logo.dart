@@ -14,7 +14,7 @@ class Logo extends StatelessWidget {
         ),
         const Text(
           'Ficha Dez',
-          style: TextStyle(fontSize: 30, fontWeight: FontWeight.w500),
+          style: TextStyle(fontSize: 30, fontFamily: 'BadScript'),
         ),
       ]),
     );

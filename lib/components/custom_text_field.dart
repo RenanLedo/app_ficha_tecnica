@@ -70,7 +70,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
           labelText: widget.label,
           isDense: true,
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(5),
+            borderRadius: BorderRadius.circular(50),
           ),
         ),
       ),

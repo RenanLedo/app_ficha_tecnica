@@ -1,8 +1,27 @@
 import 'package:app_ficha_tecnica/modulos/despesas/model/despesa.dart';
 import 'package:get/get.dart';
 
-class DespesaController extends GetxController { 
-List<Despesa> despesaList = [];
+class DespesaController extends GetxController {
+  List<Despesa> despesaList = [
+    Despesa(
+        id: '1',
+        title: 'Molho',
+        price: 1,
+        unidadeMedida: 'GRAMA',
+        custoUnd: 1.00),
+    Despesa(
+        id: '2',
+        title: 'Sacola',
+        price: 0.7,
+        unidadeMedida: 'UNIDADE',
+        custoUnd: 0.7),
+    Despesa(
+        id: '3',
+        title: 'Entrega',
+        price: 3,
+        unidadeMedida: 'UNIDADE',
+        custoUnd: 3),
+  ];
   String itemValue = '';
 
   void setItemValue(String value) {

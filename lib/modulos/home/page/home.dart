@@ -29,7 +29,7 @@ class Home extends StatelessWidget {
                 title: 'Insumos',
                 preQuantidade: 'Quantidade:',
                 quantidadeUnd: insumoController.insumosList.length,
-                onPress: () => Get.toNamed(PagesRoutes.createInsumos),
+                onPress: () => Get.toNamed(PagesRoutes.insumos),
               );
             },
           ),

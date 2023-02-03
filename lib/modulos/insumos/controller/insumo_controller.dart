@@ -2,13 +2,39 @@ import 'package:app_ficha_tecnica/modulos/insumos/model/insumo.dart';
 import 'package:get/get.dart';
 
 class InsumoController extends GetxController {
-  List<Insumo> insumosList = [];
+  List<Insumo> insumosList = [
+    Insumo(
+        id: '1',
+        title: 'Sal',
+        price: 1,
+        unidadeMedida: 'QUILOGRAMA',
+        custoUnd: 0.01),
+    Insumo(
+        id: '2',
+        title: 'Ovo',
+        price: 0.7,
+        unidadeMedida: 'UNIDADE',
+        custoUnd: 0.7),
+    Insumo(
+        id: '3',
+        title: 'Frango',
+        price: 20,
+        unidadeMedida: 'QUILOGRAMA',
+        custoUnd: 2),
+  ];
   String itemValue = '';
+
+  // RxString valueBusca = ''.obs;
+  // List<Insumo> insumosListBusca = [];
+
+ 
 
   void setItemValue(String value) {
     itemValue = value;
     update();
   }
+
+  
 
   void addInsumos(Insumo insumo) {
     var id = DateTime.now().toString().trim();

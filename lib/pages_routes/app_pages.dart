@@ -1,6 +1,7 @@
 import 'package:app_ficha_tecnica/modulos/custosFixos/page/create_custos_fixos.dart';
 import 'package:app_ficha_tecnica/modulos/despesas/page/despesa_page.dart';
 import 'package:app_ficha_tecnica/modulos/insumos/page/create_insumos_page.dart';
+import 'package:app_ficha_tecnica/modulos/insumos/page/insumos_page.dart';
 import 'package:app_ficha_tecnica/modulos/receita/page/add_receita.dart';
 import 'package:app_ficha_tecnica/modulos/receita/page/receitas_page.dart';
 import 'package:get/get.dart';
@@ -12,6 +13,10 @@ abstract class AppPages {
     GetPage(
       name: PagesRoutes.createInsumos,
       page: () => const CreateInsumosPage(),
+    ),
+    GetPage(
+      name: PagesRoutes.insumos,
+      page: () => const InsumosPage(),
     ),
     GetPage(
       name: PagesRoutes.custosFixos,
@@ -38,6 +43,7 @@ abstract class AppPages {
 
 abstract class PagesRoutes {
   static const String createInsumos = '/createInsumos';
+  static const String insumos = '/insumos';
   static const String custosFixos = '/custosFixos';
   static const String receitas = '/receitas';
   static const String addReceitas = '/addReceitas';

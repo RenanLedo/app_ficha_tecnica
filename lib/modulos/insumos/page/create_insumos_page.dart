@@ -1,7 +1,6 @@
 import 'package:app_ficha_tecnica/components/custom_text_field.dart';
-import 'package:app_ficha_tecnica/modulos/insumos/model/insumo.dart';
-import 'package:app_ficha_tecnica/modulos/components/insumo_tile.dart';
 import 'package:app_ficha_tecnica/modulos/insumos/controller/insumo_controller.dart';
+import 'package:app_ficha_tecnica/modulos/insumos/model/insumo.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -25,7 +24,12 @@ class _CreateInsumosPageState extends State<CreateInsumosPage> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         leading: TextButton(
-          onPressed: () => Get.back(),
+          onPressed: () {
+            FocusScope.of(context).unfocus();
+            tituloEC.text = '';
+            custoEC.text = '';
+            return Get.back();
+          },
           child: const Text(
             'Voltar',
             style: TextStyle(color: Colors.black),
@@ -39,6 +43,8 @@ class _CreateInsumosPageState extends State<CreateInsumosPage> {
       body: Padding(
         padding: const EdgeInsets.all(15),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             GetBuilder<InsumoController>(
               builder: (insumoController) {
@@ -79,57 +85,26 @@ class _CreateInsumosPageState extends State<CreateInsumosPage> {
                             .toList(),
                       ),
                     ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    ElevatedButton(
-                        onPressed: () {
-                          // double custo = double.parse(custoEC.text);
-
-                          insumoController.addInsumos(
-                            Insumo(
-                              title: tituloEC.text,
-                              price: double.parse(custoEC.text),
-                              unidadeMedida: insumoController.itemValue,
-                            ),
-                          );
-                          FocusScope.of(context).unfocus();
-                          tituloEC.text = '';
-                          custoEC.text = '';
-                        },
-                        child: const Text('Salvar')),
-                    const SizedBox(
-                      height: 10,
-                    ),
                   ],
                 );
               },
             ),
+            ElevatedButton(
+                onPressed: () {
+                  // double custo = double.parse(custoEC.text);
 
-            //area da lista a partri daqui:
-            Expanded(
-              child: Container(
-                  color: const Color.fromARGB(255, 216, 216, 216),
-                  child: GetBuilder<InsumoController>(
-                    builder: (insumoController) {
-                      return insumoController.insumosList.isEmpty
-                          ? const Center(
-                              child: Text('Não há Insumos Cadastrados'),
-                            )
-                          : ListView.builder(
-                              itemCount: insumoController.insumosList.length,
-                              itemBuilder: ((context, index) {
-                                final insumoIndex =
-                                    insumoController.insumosList[index];
-                                return InsumoTile(
-                                  insumo: insumoIndex,
-                                  onPress: () => insumoController.remove(
-                                      insumoController.insumosList[index]),
-                                );
-                              }));
-                    },
-                  )),
-            )
+                  insumoController.addInsumos(
+                    Insumo(
+                      title: tituloEC.text,
+                      price: double.parse(custoEC.text),
+                      unidadeMedida: insumoController.itemValue,
+                    ),
+                  );
+                  FocusScope.of(context).unfocus();
+                  tituloEC.text = '';
+                  custoEC.text = '';
+                },
+                child: const Text('Salvar')),
           ],
         ),
       ),

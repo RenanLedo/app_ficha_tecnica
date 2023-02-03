@@ -85,6 +85,10 @@ flutter:
           weight: 500
         - asset: assets/fonts/Rubik-Bold.ttf
           weight: 700
+    - family: BadScript
+      fonts:
+        - asset: assets/fonts/BadScript-Regular.ttf
+          
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro
