@@ -5,7 +5,7 @@ import 'package:app_ficha_tecnica/modulos/receita/page/add_receita.dart';
 import 'package:app_ficha_tecnica/modulos/receita/page/receitas_page.dart';
 import 'package:get/get.dart';
 
-import '../modulos/home.dart';
+import '../modulos/home/page/home.dart';
 
 abstract class AppPages {
   static final pages = <GetPage>[

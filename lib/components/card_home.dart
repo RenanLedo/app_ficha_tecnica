@@ -1,4 +1,6 @@
+import 'package:app_ficha_tecnica/components/custom_icon.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CardHome extends StatelessWidget {
   String icon;
@@ -18,54 +20,44 @@ class CardHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 100,
-      height: 100,
+    return Container(
+      margin: const EdgeInsets.only(bottom: 5),
+      width: Get.width,
+      // height: 100,
       child: Card(
         child: Padding(
-          padding: const EdgeInsets.all(10),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 14),
+          child: Row(
             children: [
-              Image.asset(icon, width: 80, height: 80),
-              Text(
-                title,
-                style: const TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
+              Image.asset(icon, width: 40, height: 40),
+              const SizedBox(
+                width: 20,
               ),
-              Expanded(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text('$preQuantidade: ${quantidade.toString()}',
-                          style: const TextStyle(
-                              fontSize: 12,
-                              color: Color.fromARGB(221, 49, 49, 49))),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: const TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.w500,
                     ),
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(50),
-                      child: Material(
-                        color: const Color.fromRGBO(157, 255, 206, 1),
-                        child: InkWell(
-                          onTap: onPress,
-                          child: const Padding(
-                            padding: EdgeInsets.all(6),
-                            child: Icon(
-                              Icons.arrow_forward_rounded,
-                              color: Color.fromARGB(255, 58, 58, 58),
-                            ),
-                          ),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              )
+                  ),
+                  Text('$preQuantidade ${quantidade.toString()}',
+                      style: const TextStyle(
+                          fontWeight: FontWeight.w300,
+                          fontSize: 12,
+                          color: Color.fromARGB(221, 49, 49, 49))),
+                ],
+              ),
+              const Spacer(),
+              CustomIcon(
+                  onPress: () {},
+                  radios: 0,
+                  backgrounColor: Colors.transparent,
+                  color: Colors.black87,
+                  icon: Icons.arrow_forward_rounded,
+                  padding: 0)
             ],
           ),
         ),

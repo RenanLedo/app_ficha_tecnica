@@ -1,6 +1,6 @@
 import 'package:app_ficha_tecnica/modulos/custosFixos/controller/custos_fix_controller.dart';
 import 'package:app_ficha_tecnica/modulos/despesas/controller/despesa_controller.dart';
-import 'package:app_ficha_tecnica/modulos/home.dart';
+import 'package:app_ficha_tecnica/modulos/home/page/home.dart';
 import 'package:app_ficha_tecnica/modulos/insumos/controller/insumo_controller.dart';
 import 'package:app_ficha_tecnica/modulos/receita/controller/receita_controller.dart';
 import 'package:flutter/material.dart';
