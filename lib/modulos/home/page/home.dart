@@ -27,20 +27,9 @@ class Home extends StatelessWidget {
               return CardHome(
                 icon: 'assets/images/icon-insumos.png',
                 title: 'Insumos',
-                preQuantidade: 'Quantidade',
-                quantidade: insumoController.insumosList.length.toDouble(),
+                preQuantidade: 'Quantidade:',
+                quantidadeUnd: insumoController.insumosList.length,
                 onPress: () => Get.toNamed(PagesRoutes.createInsumos),
-              );
-            },
-          ),
-          GetBuilder<ReceitaController>(
-            builder: (receitaController) {
-              return CardHome(
-                icon: 'assets/images/icon-receita.png',
-                title: 'Receita',
-                preQuantidade: 'Quantidade',
-                quantidade: 10,
-                onPress: () => Get.toNamed(PagesRoutes.receitas),
               );
             },
           ),
@@ -49,10 +38,20 @@ class Home extends StatelessWidget {
               return CardHome(
                 icon: 'assets/images/icon-despesas.png',
                 title: 'Despesas',
-                preQuantidade: 'Quantidade',
-                quantidade: double.parse(
-                    despesaController.despesaList.length.toString()),
+                preQuantidade: 'Quantidade: ',
+                quantidadeUnd: despesaController.despesaList.length,
                 onPress: () => Get.toNamed(PagesRoutes.createDespesa),
+              );
+            },
+          ),
+          GetBuilder<ReceitaController>(
+            builder: (receitaController) {
+              return CardHome(
+                icon: 'assets/images/icon-receita.png',
+                title: 'Receita',
+                preQuantidade: 'Quantidade: ',
+                quantidadeUnd: 10,
+                onPress: () => Get.toNamed(PagesRoutes.receitas),
               );
             },
           ),
@@ -61,8 +60,8 @@ class Home extends StatelessWidget {
               return CardHome(
                 icon: 'assets/images/icon-custos.png',
                 title: 'Custos Fixos',
-                preQuantidade: 'Total R\$',
-                quantidade: double.parse(
+                preQuantidade: 'Total: ',
+                quantidadeRs: double.parse(
                     custsFixController.totalCustosFix.toStringAsFixed(2)),
                 onPress: () => Get.toNamed(PagesRoutes.custosFixos),
               );
