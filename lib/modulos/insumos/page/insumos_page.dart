@@ -1,3 +1,4 @@
+import 'package:app_ficha_tecnica/components/custon_button.dart';
 import 'package:app_ficha_tecnica/modulos/insumos/components/insumo_tile.dart';
 import 'package:app_ficha_tecnica/modulos/insumos/controller/insumo_controller.dart';
 import 'package:app_ficha_tecnica/pages_routes/app_pages.dart';
@@ -20,17 +21,8 @@ class _InsumosPageState extends State<InsumosPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
-        leading: TextButton(
-          onPressed: () => Get.back(),
-          child: const Text(
-            'Voltar',
-            style: TextStyle(color: Colors.black),
-          ),
-        ),
         title: const Text(
           'Insumos',
-          style: TextStyle(color: Colors.black),
         ),
       ),
       body: Padding(
@@ -38,9 +30,9 @@ class _InsumosPageState extends State<InsumosPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            ElevatedButton(
-                onPressed: () => Get.toNamed(PagesRoutes.createInsumos),
-                child: const Text('Adicionar Insumo')),
+            CustonButton(
+                onPress: () => Get.toNamed(PagesRoutes.createInsumos),
+                label: 'Adicionar Insumo'),
             const SizedBox(
               height: 20,
             ),
@@ -48,13 +40,13 @@ class _InsumosPageState extends State<InsumosPage> {
               controller: _searchEC,
               onChanged: (value) {
                 // homeController.searchTitle.value = value;
-                insumoController.valueBusca.value = value;
+                // insumoController.valueBusca.value = value;
               },
               decoration: InputDecoration(
                 suffixIcon: IconButton(
                     onPressed: () {
                       _searchEC.clear();
-                      insumoController.valueBusca.value = '';
+                      // insumoController.valueBusca.value = '';
                       FocusScope.of(context).unfocus();
                     },
                     icon: const Icon(Icons.close)),
@@ -98,18 +90,11 @@ class _InsumosPageState extends State<InsumosPage> {
                           itemBuilder: ((context, index) {
                             final insumoIndex =
                                 insumoController.insumosList[index];
-                            return insumoController.valueBusca.value == ''
-                                ? InsumoTile(
-                                    insumo: insumoIndex,
-                                    onPress: () => insumoController.remove(
-                                        insumoController.insumosList[index]),
-                                  )
-                                : InsumoTile(
-                                    insumo: insumoIndex,
-                                    onPress: () => insumoController.remove(
-                                        insumoController
-                                            .insumosListBusca[index]),
-                                  );
+                            return InsumoTile(
+                              insumo: insumoIndex,
+                              onPress: () => insumoController
+                                  .remove(insumoController.insumosList[index]),
+                            );
                           }));
                 },
               ),

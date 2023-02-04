@@ -1,4 +1,5 @@
 import 'package:app_ficha_tecnica/components/custom_text_field.dart';
+import 'package:app_ficha_tecnica/components/custon_button.dart';
 import 'package:app_ficha_tecnica/modulos/insumos/controller/insumo_controller.dart';
 import 'package:app_ficha_tecnica/modulos/insumos/model/insumo.dart';
 import 'package:flutter/material.dart';
@@ -22,22 +23,8 @@ class _CreateInsumosPageState extends State<CreateInsumosPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
-        leading: TextButton(
-          onPressed: () {
-            FocusScope.of(context).unfocus();
-            tituloEC.text = '';
-            custoEC.text = '';
-            return Get.back();
-          },
-          child: const Text(
-            'Voltar',
-            style: TextStyle(color: Colors.black),
-          ),
-        ),
         title: const Text(
           'Insumos',
-          style: TextStyle(color: Colors.black),
         ),
       ),
       body: Padding(
@@ -89,8 +76,8 @@ class _CreateInsumosPageState extends State<CreateInsumosPage> {
                 );
               },
             ),
-            ElevatedButton(
-                onPressed: () {
+            CustonButton(
+                onPress: () {
                   // double custo = double.parse(custoEC.text);
 
                   insumoController.addInsumos(
@@ -104,7 +91,7 @@ class _CreateInsumosPageState extends State<CreateInsumosPage> {
                   tituloEC.text = '';
                   custoEC.text = '';
                 },
-                child: const Text('Salvar')),
+                label: 'Salvar'),
           ],
         ),
       ),

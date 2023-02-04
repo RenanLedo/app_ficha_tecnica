@@ -27,7 +27,7 @@ class Home extends StatelessWidget {
               return CardHome(
                 icon: 'assets/images/icon-insumos.png',
                 title: 'Insumos',
-                preQuantidade: 'Quantidade:',
+                preQuantidade: 'Quantidade: ',
                 quantidadeUnd: insumoController.insumosList.length,
                 onPress: () => Get.toNamed(PagesRoutes.insumos),
               );

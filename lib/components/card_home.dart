@@ -31,6 +31,7 @@ class CardHome extends StatelessWidget {
         width: Get.width,
         // height: 100,
         child: Card(
+          color: const Color.fromARGB(255, 218, 218, 218),
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 14),
             child: Row(
@@ -45,6 +46,7 @@ class CardHome extends StatelessWidget {
                     Text(
                       title,
                       style: const TextStyle(
+                        color: Colors.black87,
                         fontSize: 24,
                         fontWeight: FontWeight.w500,
                       ),
@@ -54,18 +56,18 @@ class CardHome extends StatelessWidget {
                         Text(preQuantidade,
                             style: const TextStyle(
                                 fontWeight: FontWeight.w300,
-                                fontSize: 12,
+                                fontSize: 14,
                                 color: Color.fromARGB(221, 49, 49, 49))),
                         quantidadeUnd == null
                             ? Text(utilService.priceToCurrency(quantidadeRs!),
                                 style: const TextStyle(
                                     fontWeight: FontWeight.w300,
-                                    fontSize: 12,
+                                    fontSize: 14,
                                     color: Color.fromARGB(221, 49, 49, 49)))
                             : Text(quantidadeUnd.toString(),
                                 style: const TextStyle(
                                     fontWeight: FontWeight.w300,
-                                    fontSize: 12,
+                                    fontSize: 14,
                                     color: Color.fromARGB(221, 49, 49, 49))),
                       ],
                     ),
@@ -74,6 +76,7 @@ class CardHome extends StatelessWidget {
                 const Spacer(),
                 const Icon(
                   Icons.arrow_forward_rounded,
+                  color: Colors.black87,
                 ),
               ],
             ),
