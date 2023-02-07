@@ -30,12 +30,11 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(
           brightness: Brightness.dark,
-          seedColor: const Color.fromARGB(255, 36, 36, 36),
+          seedColor: const Color.fromARGB(255, 10, 160, 10),
           background: const Color.fromARGB(255, 36, 36, 36),
         ),
         appBarTheme: const AppBarTheme(
           color: Color.fromARGB(255, 36, 36, 36),
-          centerTitle: true,
         ),
         fontFamily: 'Rubik',
       ),

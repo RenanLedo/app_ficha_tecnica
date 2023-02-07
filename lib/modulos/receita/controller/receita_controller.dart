@@ -15,6 +15,10 @@ class ReceitaController extends GetxController {
   Receita? receitaAtual;
   double? custoReceitAtual;
 
+  double? lucroReceita;
+  double? margemLucroreceita;
+  double? markupreceita;
+
   Insumo? itemInsumoValue;
   Despesa? itemDespesaValue;
 
@@ -30,9 +34,7 @@ class ReceitaController extends GetxController {
           custoInReceita: insumo.custoUnd! * quantidade!));
     }
 
-    print(custoReceitAtual == null);
     setSomarCustoReceitaAtual();
-    print(custoReceitAtual == null);
 
     update();
   }
@@ -110,8 +112,6 @@ class ReceitaController extends GetxController {
           0;
     }
 
-    print(somaDespesaReceita);
-
     // if (somaDespesaReceita.isEmpty) {
     //   somaDespesaReceita = 0.0;
     // } else {
@@ -124,7 +124,43 @@ class ReceitaController extends GetxController {
     return somaInsumoReceita + somaDespesaReceita;
   }
 
-  void creatReceita(String title) {
+  double calcularMarkup(double precoVenda) {
+    if (precoVenda != null) {
+      markupreceita = ((precoVenda - setSomarCustoReceitaAtual()) /
+          setSomarCustoReceitaAtual());
+      update();
+      return ((precoVenda - setSomarCustoReceitaAtual()) /
+          setSomarCustoReceitaAtual());
+    } else {
+      update();
+      return 0;
+    }
+  }
+
+  double calcularMargemLucro(double precoVenda) {
+    if (precoVenda != null) {
+      margemLucroreceita =
+          ((precoVenda - setSomarCustoReceitaAtual()) / precoVenda);
+      update();
+      return ((precoVenda - setSomarCustoReceitaAtual()) / precoVenda);
+    } else {
+      update();
+      return 0;
+    }
+  }
+
+  double calcularLucro(double precoVenda) {
+    if (precoVenda != null) {
+      lucroReceita = precoVenda - setSomarCustoReceitaAtual();
+      update();
+      return precoVenda - setSomarCustoReceitaAtual();
+    } else {
+      update();
+      return 0;
+    }
+  }
+
+  void creatReceita(String title, double precoVenda) {
     // final somaInsumoReceita = insumosReceitaList
     //     .map((e) => e.custoInReceita)
     //     .reduce((value, element) => value! + element!);
@@ -134,17 +170,23 @@ class ReceitaController extends GetxController {
     var id = DateTime.now().toString().trim();
 
     receitaAtual = Receita(
-        id: id,
-        title: title,
-        insumo: insumosReceitaList,
-        despesa: despesaReceitaList,
-        custoReceita: setSomarCustoReceitaAtual());
+      id: id,
+      title: title,
+      insumo: insumosReceitaList,
+      despesa: despesaReceitaList,
+      custoReceita: setSomarCustoReceitaAtual(),
+      precoVenda: precoVenda,
+      markup: calcularMarkup(precoVenda),
+      margemLucro: calcularMargemLucro(precoVenda),
+      lucro: precoVenda - setSomarCustoReceitaAtual(),
+    );
 
     if (receitaAtual != null) {
       receitaList.add(receitaAtual!);
     }
 
     limparTudo();
+    Get.back();
     update();
   }
 
@@ -153,6 +195,10 @@ class ReceitaController extends GetxController {
     despesaReceitaList = [];
     receitaAtual = null;
     custoReceitAtual = null;
+
+    lucroReceita = null;
+    markupreceita = null;
+    margemLucroreceita = null;
 
     itemInsumoValue = null;
     itemDespesaValue = null;

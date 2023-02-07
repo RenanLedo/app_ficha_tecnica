@@ -1,3 +1,4 @@
+import 'package:app_ficha_tecnica/components/custon_button.dart';
 import 'package:app_ficha_tecnica/modulos/receita/controller/receita_controller.dart';
 import 'package:app_ficha_tecnica/pages_routes/app_pages.dart';
 import 'package:flutter/material.dart';
@@ -10,40 +11,35 @@ class ReceitasPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          automaticallyImplyLeading: false,
-          actions: [
-            IconButton(
-                onPressed: () => Get.toNamed(PagesRoutes.addReceitas),
-                icon: const Icon(
-                  Icons.add,
-                  color: Colors.black,
-                ))
-          ],
-          leading: TextButton(
-            onPressed: () => Get.back(),
-            child: const Text(
-              'Voltar',
-              style: TextStyle(color: Colors.black),
-            ),
-          ),
           title: const Text(
-            'Receitas',
-            style: TextStyle(color: Colors.black),
-          )),
-      body: GetBuilder<ReceitaController>(
-        builder: (receitaController) {
-          return ListView.builder(
-              itemCount: receitaController.receitaList.length,
-              itemBuilder: (context, index) {
-                return Row(
-                  children: [
-                    Text(receitaController.receitaList[index].title),
-                    Text(receitaController.receitaList[index].custoReceita
-                        .toString())
-                  ],
-                );
-              });
-        },
+        'Receitas',
+      )),
+      body: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            CustonButton(
+                onPress: () => Get.toNamed(PagesRoutes.addReceitas),
+                label: 'Criar Receita'),
+            GetBuilder<ReceitaController>(
+              builder: (receitaController) {
+                return ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: receitaController.receitaList.length,
+                    itemBuilder: (context, index) {
+                      return Row(
+                        children: [
+                          Text(receitaController.receitaList[index].title),
+                          Text(receitaController.receitaList[index].custoReceita
+                              .toString())
+                        ],
+                      );
+                    });
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

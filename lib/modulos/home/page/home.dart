@@ -40,7 +40,7 @@ class Home extends StatelessWidget {
                 title: 'Despesas',
                 preQuantidade: 'Quantidade: ',
                 quantidadeUnd: despesaController.despesaList.length,
-                onPress: () => Get.toNamed(PagesRoutes.createDespesa),
+                onPress: () => Get.toNamed(PagesRoutes.despesa),
               );
             },
           ),

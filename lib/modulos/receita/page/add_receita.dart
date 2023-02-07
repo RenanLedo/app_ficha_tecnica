@@ -1,5 +1,6 @@
 import 'package:app_ficha_tecnica/components/custom_icon.dart';
 import 'package:app_ficha_tecnica/components/custom_text_field.dart';
+import 'package:app_ficha_tecnica/components/custon_button.dart';
 import 'package:app_ficha_tecnica/modulos/despesas/components/despesa_receita_tile.dart';
 import 'package:app_ficha_tecnica/modulos/despesas/controller/despesa_controller.dart';
 import 'package:app_ficha_tecnica/modulos/despesas/model/despesa.dart';
@@ -26,21 +27,13 @@ class _AddReceitaState extends State<AddReceita> {
   final quantidadeIsumooEC = TextEditingController();
   final quantidadeDespesaEC = TextEditingController();
   final titleEC = TextEditingController();
+  final precoVendaEC = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
-        leading: TextButton(
-          onPressed: () => Get.back(),
-          child: const Text(
-            'Voltar',
-            style: TextStyle(color: Colors.black),
-          ),
-        ),
         title: const Text(
           'Adicione uma Receitas',
-          style: TextStyle(color: Colors.black),
         ),
         actions: [
           TextButton(
@@ -52,14 +45,13 @@ class _AddReceitaState extends State<AddReceita> {
             },
             child: const Text(
               'Limpar',
-              style: TextStyle(color: Colors.black),
             ),
           ),
         ],
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(14),
+          padding: const EdgeInsets.all(10),
           child: Column(
             children: [
               CustomTextField(
@@ -69,6 +61,7 @@ class _AddReceitaState extends State<AddReceita> {
               GetBuilder<ReceitaController>(
                 builder: (receitaController) {
                   return Card(
+                    color: const Color.fromARGB(255, 14, 14, 14),
                     child: Padding(
                       padding: const EdgeInsets.all(10),
                       child: Column(
@@ -148,7 +141,10 @@ class _AddReceitaState extends State<AddReceita> {
                             ],
                           ),
                           receitaController.insumosReceitaList.isEmpty
-                              ? const SizedBox()
+                              ? const SizedBox(
+                                  height: 30,
+                                  child: Text('Nenhum insumo adicionado'),
+                                )
                               : SizedBox(
                                   height: 30,
                                   child: ListView.builder(
@@ -161,7 +157,6 @@ class _AddReceitaState extends State<AddReceita> {
                                         final insumoList = receitaController
                                             .insumosReceitaList[index];
                                         return InsumosReceitaTile(
-                                          
                                           insumo: insumoList,
                                           onPress: () {
                                             return receitaController
@@ -179,6 +174,7 @@ class _AddReceitaState extends State<AddReceita> {
               GetBuilder<ReceitaController>(
                 builder: (receitaController) {
                   return Card(
+                    color: const Color.fromARGB(255, 14, 14, 14),
                     child: Padding(
                       padding: const EdgeInsets.all(10),
                       child: Column(
@@ -259,7 +255,10 @@ class _AddReceitaState extends State<AddReceita> {
                             ],
                           ),
                           receitaController.despesaReceitaList.isEmpty
-                              ? const SizedBox()
+                              ? const SizedBox(
+                                  height: 30,
+                                  child: Text('Nenhuma despesa adicionada'),
+                                )
                               : SizedBox(
                                   height: 30,
                                   child: ListView.builder(
@@ -288,16 +287,101 @@ class _AddReceitaState extends State<AddReceita> {
               ),
               GetBuilder<ReceitaController>(
                 builder: (receitaController) {
-                  return Row(
-                    children: [
-                      ElevatedButton(
-                          onPressed: () {
-                            receitaController.creatReceita(titleEC.text);
-                          },
-                          child: const Text('salvar receita')),
-                      Text(utilsSelvice.priceToCurrency(
-                          receitaController.custoReceitAtual ?? 0))
-                    ],
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        Row(
+                          children: [
+                            Column(
+                              children: [
+                                const Text('Custo da Receita'),
+                                Text(
+                                  utilsSelvice.priceToCurrency(
+                                      receitaController.custoReceitAtual ?? 0),
+                                  style: const TextStyle(fontSize: 30),
+                                ),
+                              ],
+                            ),
+                            const Spacer(),
+                            Column(
+                              children: [
+                                const Text('Preço de venda'),
+                                SizedBox(
+                                  width: Get.width / 2,
+                                  child: TextField(
+                                    keyboardType: TextInputType.number,
+                                    controller: precoVendaEC,
+                                    onChanged: (value) {
+                                      receitaController.calcularMarkup(
+                                          double.parse(precoVendaEC.text));
+                                      receitaController.calcularMargemLucro(
+                                          double.parse(precoVendaEC.text));
+                                      receitaController.calcularLucro(
+                                          double.parse(precoVendaEC.text));
+                                      print(receitaController.lucroReceita);
+                                      print(receitaController.markupreceita);
+                                      print(
+                                          receitaController.margemLucroreceita);
+                                    },
+                                  ),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              children: [
+                                const Text('Lucro'),
+                                Text(
+                                  utilsSelvice.priceToCurrency(
+                                      receitaController.lucroReceita ?? 0),
+                                  style: const TextStyle(fontSize: 20),
+                                ),
+                              ],
+                            ),
+                            Column(
+                              children: [
+                                const Text('Margem Lucro'),
+                                Text(
+                                  utilsSelvice.porcentagem(
+                                      receitaController.margemLucroreceita ??
+                                          0),
+                                  style: const TextStyle(fontSize: 20),
+                                ),
+                              ],
+                            ),
+                            Column(
+                              children: [
+                                const Text('Markup'),
+                                Text(
+                                  utilsSelvice.porcentagem(
+                                      receitaController.markupreceita ?? 0),
+                                  style: const TextStyle(fontSize: 20),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        CustonButton(
+                            onPress: () {
+                              receitaController.creatReceita(titleEC.text,
+                                  double.parse(precoVendaEC.text));
+                              titleEC.text = '';
+                              receitaController.limparTudo();
+                            },
+                            label: 'salvar receita'),
+                      ],
+                    ),
                   );
                 },
               )

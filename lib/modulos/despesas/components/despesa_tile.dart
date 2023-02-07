@@ -13,22 +13,16 @@ class DespesaTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Container(
-        color: Colors.white,
-        child: ListTile(
-          title: Text(
-            despesa.title,
-            style: const TextStyle(fontWeight: FontWeight.bold),
-          ),
-          subtitle: Text(
-              'Custo por grama ou unidade: R\$ ${despesa.custoUnd!.toStringAsFixed(2)}'),
-          trailing: IconButton(
-            onPressed: onPress,
-            icon: const Icon(Icons.delete),
-          ),
-        ),
+    return ListTile(
+      title: Text(
+        despesa.title,
+        style: const TextStyle(fontWeight: FontWeight.bold),
+      ),
+      subtitle: Text(
+          'Custo por grama ou unidade: R\$ ${despesa.custoUnd!.toStringAsFixed(2)}'),
+      trailing: IconButton(
+        onPressed: onPress,
+        icon: const Icon(Icons.delete),
       ),
     );
   }
