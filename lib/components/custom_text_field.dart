@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 
 class CustomTextField extends StatefulWidget {
   final IconData? icon;
+  final IconData? suffixIcon;
   final String label;
   final bool isSecret;
   final List<TextInputFormatter>? inputFormatters;
@@ -12,10 +14,13 @@ class CustomTextField extends StatefulWidget {
   final TextEditingController? controller;
   final TextInputType? textInputType;
   final GlobalKey<FormFieldState>? formFieldKey;
+  final ValueChanged<String>? onChanged;
 
   const CustomTextField({
     Key? key,
     this.icon,
+    this.onChanged,
+    this.suffixIcon,
     required this.label,
     this.isSecret = false,
     this.inputFormatters,
@@ -46,6 +51,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
     return Padding(
       padding: const EdgeInsets.only(bottom: 15),
       child: TextFormField(
+        onChanged: widget.onChanged,
         readOnly: widget.readOnly,
         initialValue: widget.initialValue,
         inputFormatters: widget.inputFormatters,
@@ -55,6 +61,10 @@ class _CustomTextFieldState extends State<CustomTextField> {
         keyboardType: widget.textInputType,
         key: widget.formFieldKey,
         decoration: InputDecoration(
+          filled: true,
+          fillColor: Get.isPlatformDarkMode
+              ? const Color.fromARGB(255, 73, 73, 73)
+              : const Color.fromARGB(255, 230, 230, 230),
           prefixIcon: widget.icon == null ? null : Icon(widget.icon),
           suffixIcon: widget.isSecret
               ? IconButton(
@@ -66,12 +76,16 @@ class _CustomTextFieldState extends State<CustomTextField> {
                   icon:
                       Icon(isObscure ? Icons.visibility : Icons.visibility_off),
                 )
-              : null,
+              : Icon(widget.suffixIcon),
           labelText: widget.label,
           isDense: true,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(50),
-          ),
+          // focusedBorder: UnderlineInputBorder(
+          //     borderSide:
+          //         BorderSide(width: 2, color: Theme.of(context).primaryColor)),
+          // enabledBorder: UnderlineInputBorder(
+          //   borderSide:
+          //       BorderSide(width: 2, color: Theme.of(context).splashColor),
+          // ),
         ),
       ),
     );

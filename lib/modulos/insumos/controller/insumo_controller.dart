@@ -22,19 +22,32 @@ class InsumoController extends GetxController {
         unidadeMedida: 'QUILOGRAMA',
         custoUnd: 2),
   ];
+
+  List<Insumo> insumoListSeach = [];
+
   String itemValue = '';
 
   // RxString valueBusca = ''.obs;
   // List<Insumo> insumosListBusca = [];
 
- 
+  @override
+  void onInit() {
+    insumoListSeach = insumosList;
+    super.onInit();
+  }
 
   void setItemValue(String value) {
     itemValue = value;
     update();
   }
 
-  
+  void setListFiltered(String value) {
+    insumoListSeach = insumosList
+        .where((element) =>
+            element.title.toUpperCase().contains(value.toUpperCase()))
+        .toList();
+    update();
+  }
 
   void addInsumos(Insumo insumo) {
     var id = DateTime.now().toString().trim();
@@ -54,6 +67,7 @@ class InsumoController extends GetxController {
   void remove(Insumo insumo) {
     if (insumo.id != null) {
       insumosList.removeWhere((element) => element.id == insumo.id);
+      insumoListSeach = insumosList;
     }
     update();
   }

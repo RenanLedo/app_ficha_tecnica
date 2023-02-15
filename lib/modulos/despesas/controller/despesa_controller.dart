@@ -22,10 +22,26 @@ class DespesaController extends GetxController {
         unidadeMedida: 'UNIDADE',
         custoUnd: 3),
   ];
+
+  List<Despesa> despesaListSeach = [];
   String itemValue = '';
+
+  @override
+  void onInit() {
+    despesaListSeach = despesaList;
+    super.onInit();
+  }
 
   void setItemValue(String value) {
     itemValue = value;
+    update();
+  }
+
+  void setListFiltered(String value) {
+    despesaListSeach = despesaList
+        .where((element) =>
+            element.title.toUpperCase().contains(value.toUpperCase()))
+        .toList();
     update();
   }
 
@@ -47,6 +63,7 @@ class DespesaController extends GetxController {
   void remove(Despesa insumo) {
     if (insumo.id != null) {
       despesaList.removeWhere((element) => element.id == insumo.id);
+      despesaListSeach = despesaList;
     }
     update();
   }

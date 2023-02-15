@@ -1,3 +1,4 @@
+import 'package:app_ficha_tecnica/components/custom_text_field.dart';
 import 'package:app_ficha_tecnica/components/custon_button.dart';
 import 'package:app_ficha_tecnica/modulos/despesas/components/despesa_tile.dart';
 import 'package:app_ficha_tecnica/modulos/despesas/controller/despesa_controller.dart';
@@ -40,45 +41,13 @@ class _DespesaPageState extends State<DespesaPage> {
             const SizedBox(
               height: 20,
             ),
-            TextFormField(
+            CustomTextField(
               controller: _searchEC,
-              onChanged: (value) {
-                // homeController.searchTitle.value = value;
-                // insumoController.valueBusca.value = value;
-              },
-              decoration: InputDecoration(
-                suffixIcon: IconButton(
-                    onPressed: () {
-                      _searchEC.clear();
-                      // insumoController.valueBusca.value = '';
-                      FocusScope.of(context).unfocus();
-                    },
-                    icon: const Icon(Icons.close)),
-                filled: true,
-                fillColor: Colors.white,
-                isDense: true,
-                hintText: 'Pesquise aqui...',
-                hintStyle: TextStyle(
-                  color: Colors.grey.shade400,
-                  fontSize: 14,
-                ),
-                prefixIcon: const Icon(
-                  Icons.search,
-                  color: Colors.amber,
-                  size: 21,
-                ),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(60),
-                  borderSide: const BorderSide(
-                    width: 1,
-                    style: BorderStyle.none,
-                  ),
-                ),
-              ),
+              label: 'Pesquise aqui...',
+              suffixIcon: Icons.search,
+              onChanged: (value) => despesaController.setListFiltered(value),
             ),
-            const SizedBox(
-              height: 20,
-            ),
+
             //area da lista a partri daqui:
             Expanded(
               child: GetBuilder<DespesaController>(
@@ -91,14 +60,14 @@ class _DespesaPageState extends State<DespesaPage> {
                           separatorBuilder: (context, index) {
                             return const Divider();
                           },
-                          itemCount: despesaController.despesaList.length,
+                          itemCount: despesaController.despesaListSeach.length,
                           itemBuilder: ((context, index) {
-                            final despesaIndex =
-                                despesaController.despesaList[index];
+                            final despesaIndexFilter =
+                                despesaController.despesaListSeach[index];
                             return DespesaTile(
-                              despesa: despesaIndex,
+                              despesa: despesaIndexFilter,
                               onPress: () =>
-                                  despesaController.remove(despesaIndex),
+                                  despesaController.remove(despesaIndexFilter),
                             );
                           }));
                 },

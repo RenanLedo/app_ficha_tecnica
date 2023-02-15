@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'pages_routes/app_pages.dart';
+import 'services/custom_theme.dart';
 
 void main() {
   // WidgetsFlutterBinding.ensureInitialized();
@@ -26,18 +27,20 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'App Ficha Tecnica',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(
-          brightness: Brightness.dark,
-          seedColor: const Color.fromARGB(255, 10, 160, 10),
-          background: const Color.fromARGB(255, 36, 36, 36),
-        ),
-        appBarTheme: const AppBarTheme(
-          color: Color.fromARGB(255, 36, 36, 36),
-        ),
-        fontFamily: 'Rubik',
-      ),
+      theme: ligthtTheme,
+      darkTheme: darkTheme,
+      // theme: ThemeData(
+      //   useMaterial3: true,
+      //   colorScheme: ColorScheme.fromSeed(
+      //     brightness: Brightness.dark,
+      //     seedColor: const Color.fromARGB(255, 10, 160, 10),
+      //     background: const Color.fromARGB(255, 36, 36, 36),
+      //   ),
+      //   appBarTheme: const AppBarTheme(
+      //     color: Color.fromARGB(255, 36, 36, 36),
+      //   ),
+      //   fontFamily: 'Rubik',
+      // ),
       home: const Home(),
       getPages: AppPages.pages,
     );

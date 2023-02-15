@@ -16,7 +16,7 @@ class CustonButton extends StatelessWidget {
       height: 50,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-            backgroundColor: const Color.fromARGB(255, 0, 117, 78)),
+            backgroundColor: Theme.of(context).primaryColor),
         onPressed: onPress,
         child: Text(
           label,
